@@ -1,0 +1,3 @@
+./tools/RootCA*
+./tools/domains.ext
+./tools/localhost.csr
