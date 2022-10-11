@@ -1,0 +1,90 @@
+# wordpress install
+https://wiki.alpinelinux.org/wiki/WordPress
+
+# php install
+https://www.cyberciti.biz/faq/how-to-install-php-7-fpm-on-alpine-linux/
+
+location ~ \.php$ {
+	root			/var/wwww/rafernan.42.fr/htdocs/;
+	fastcgi_pass	wphp:9000;
+	fastcgi_index	index.php;
+	include			fastcgi.conf;
+}
+
+# Docker installation
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-debian-10
+
+# Container PID 1
+https://hasgeek.com/rootconf/2017/sub/what-should-be-pid-1-in-a-container-JQ6nkBv13XeZzR6zAiFsip
+
+# Proxy and reverse proxy
+https://www.strongdm.com/blog/difference-between-proxy-and-reverse-proxy
+
+# Certificate for localhost
+https://letsencrypt.org/docs/certificates-for-localhost/
+
+# Docker related
+	What is a docker container
+	What is a docker image
+	What is a docker netowrk
+	What is a docker volume
+	What is docker - compose
+
+# Docker Commands
+	docker ps								list containers
+	docker build -t <name> <dockerfile>		create image
+	docker run <id/tag>						create a container
+	docker stat								information of docker
+	docker exec -it <id> <cmd>				run cmd inside docker from host
+
+# shortcuts
+	docker rm $(docker ps --filter status=exited -q)	delete all stopped containers
+
+localhost.crt --> /etc/ssl/certs 
+localhost.key -> etc/ssl/private
+
+# Guide links
+https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a
+https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose
+
+# Useful cmd
+	nmap -p [port] [address] // check if service is running on x port of x address
+c2r8s6% cat /sgoinfre/rafernan/inception/links.txt 
+# Docker installation
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-debian-10
+
+# Container PID 1
+https://hasgeek.com/rootconf/2017/sub/what-should-be-pid-1-in-a-container-JQ6nkBv13XeZzR6zAiFsip
+
+# Proxy and reverse proxy
+https://www.strongdm.com/blog/difference-between-proxy-and-reverse-proxy
+
+# Certificate for localhost
+https://letsencrypt.org/docs/certificates-for-localhost/
+
+# Docker related
+	What is a docker container
+	What is a docker image
+	What is a docker netowrk
+	What is a docker volume
+	What is docker - compose
+
+# Docker Commands
+	docker ps								list containers
+	docker build -t <name> <dockerfile>		create image
+	docker run <id/tag>						create a container
+	docker stat								information of docker
+	docker exec -it <id> <cmd>				run cmd inside docker from host
+
+# shortcuts
+	docker rm $(docker ps --filter status=exited -q)	delete all stopped containers
+
+localhost.crt --> /etc/ssl/certs 
+localhost.key -> etc/ssl/private
+
+# Guide links
+https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a
+https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose
+
+# Useful cmd
+	nmap -p [port] [address] // check if service is running on x port of x address

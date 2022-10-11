@@ -1,39 +1,53 @@
 
-version: '3'
+version: "3.8"
 
 services:
-  #nginx:
-  #  container_name: "dc_nginx"
-  #  build : "/home/rafernan/containers/srcs/requirements/nginx/"
-  #  image : "my_nginx:1.0"
-  #  ports :
-  #    - "443:443"
-  #  networks:
-  #    - inception-network
+
+  nginx:
+    container_name: "ngx"
+    build : "/home/rafernan/containers/srcs/requirements/nginx/"
+    image : "my_nginx:1.0"
+    ports :
+      - "443:443"
+    networks:
+      - "inception-network"
+    volumes:
+      - "wp-files:/var/www/rafernan.42.fr/"
 
   wordpress:
-    container_name: "dc_wphp"
+    container_name: "wphp"
     build : "/home/rafernan/containers/srcs/requirements/wordpress/"
     image : "my_wordpress:1.0"
     expose:
-      - 9000
+      - "9000"
     env_file:
-      - .env
+      - ".env"
     networks:
-      - inception-network
+      - "inception-network"
+    volumes:
+      - "wp-files:/var/www/rafernan.42.fr/"
 
-  #mariadb:
-  #  container_name: "dc_mariadb"
-  #  build : "/home/rafernan/containers/srcs/requirements/mariadb/"
-  #  image : "my_mariadb:1.0"
-  #  expose:
-  #    - 3306
-  #  env_file:
-  #    - .env
-  #  networks:
-  #    - inception-network
+  mariadb:
+   container_name: "mdb"
+   build : "/home/rafernan/containers/srcs/requirements/mariadb/"
+   image : "my_mariadb:1.0"
+   expose:
+     - "3306"
+   env_file:
+     - .env
+   networks:
+     - inception-network
 
 networks:
   inception-network:
-    name: inception
-    driver: bridge
+    name: "inception"
+    driver: "bridge"
+
+volumes:
+  wp-files:
+    name: "wordpress-files"
+    driver: "local"
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/home/rafernan/data/wp-files/"
