@@ -14,6 +14,19 @@ services:
     volumes:
       - "wp-files:/var/www/rafernan.42.fr/"
 
+  mariadb:
+    container_name: "mdb"
+    build : "/home/rafernan/containers/srcs/requirements/mariadb/"
+    image : "my_mariadb:1.0"
+    expose:
+     - "3306"
+    env_file:
+      - ".env"
+    networks:
+      - "inception-network"
+    volumes:
+      - "wp-db:/var/lib/mysql/"
+
   wordpress:
     container_name: "wphp"
     build : "/home/rafernan/containers/srcs/requirements/wordpress/"
@@ -26,17 +39,7 @@ services:
       - "inception-network"
     volumes:
       - "wp-files:/var/www/rafernan.42.fr/"
-
-  mariadb:
-   container_name: "mdb"
-   build : "/home/rafernan/containers/srcs/requirements/mariadb/"
-   image : "my_mariadb:1.0"
-   expose:
-     - "3306"
-   env_file:
-     - .env
-   networks:
-     - inception-network
+      - "wp-db:/var/lib/mysql/"
 
 networks:
   inception-network:
@@ -51,3 +54,10 @@ volumes:
       type: "none"
       o: "bind"
       device: "/home/rafernan/data/wp-files/"
+  wp-db:
+    name: "wordpress-database"
+    driver: "local"
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/home/rafernan/data/wp-db/"

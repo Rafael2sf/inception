@@ -3,16 +3,26 @@ D		=	docker
 DIR		=	./srcs/
 CHDIR	=	cd
 
-all: $(NAME)
+all: start
 
-$(NAME):
+$(NAME): start
+
+start:
 	@$(CHDIR) $(DIR) && $(D) compose up -d
+
+stop:
+	@$(CHDIR) $(DIR) && $(D) compose stop
 
 clean:
 	@$(CHDIR) $(DIR) && $(D) compose down
 
-fclean: clean
-	@$(D) rm $(shell docker ps -aq) 2> /dev/null || echo ""
-	@$(D) rmi $(shell docker images -aq) 2> /dev/null || echo ""
+rclean:
+	@$(CHDIR) $(DIR) && $(D) compose down --rmi all
+
+fclean:
+	@$(CHDIR) $(DIR) && $(D) compose down --volumes --rmi all
+	@$(D) system prune -a -f
 
 re: fclean all
+
+.PHONY: all start stop clean rclean fclean re

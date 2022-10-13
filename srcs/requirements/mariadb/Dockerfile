@@ -1,12 +1,14 @@
 FROM debian:buster
 
-WORKDIR /app
+WORKDIR /app/
 
 COPY ./tools/ /app/
 
+# Installation
 RUN apt-get update -y \
-    && apt-get install mariadb-server -y \
-    && mysql_install_db \
-    && chmod +x ./mariadb_config.sh && ./mariadb_config.sh
+    && apt-get install mariadb-server -y
 
-CMD ["mysqld_safe"]
+# Configuration
+RUN chmod +x mariadb-install.sh
+
+ENTRYPOINT /app/mariadb-install.sh
