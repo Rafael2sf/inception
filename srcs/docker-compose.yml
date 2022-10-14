@@ -40,7 +40,6 @@ services:
     volumes:
       - "wp-files:/var/www/rafernan.42.fr/"
       - "wp-db:/var/lib/mysql/"
-
 networks:
   inception-network:
     name: "inception"
