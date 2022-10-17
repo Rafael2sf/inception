@@ -2,15 +2,11 @@ FROM alpine:3.15.6
 
 WORKDIR /app
 
-COPY ./tools/ /app/
+COPY ./tools/localhost.key /etc/ssl/private/
+COPY ./tools/localhost.crt /etc/ssl/certs/
+COPY ./tools/nginx.conf /etc/nginx/http.d/default.conf
 
 # installation
-RUN apk update && apk add --no-cache nginx
-
-# configuration
-RUN mkdir -p /etc/ssl/private \
-	&& mv ./localhost.key /etc/ssl/private \
-	&& mv ./localhost.crt /etc/ssl/certs \
-	&& mv ./nginx.conf /etc/nginx/http.d/default.conf
+RUN apk update && apk add --no-cache bash nginx
 
 CMD ["nginx", "-g", "daemon off;"]
