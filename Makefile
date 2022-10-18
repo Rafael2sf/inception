@@ -21,7 +21,6 @@ rclean:
 
 fclean:
 	@$(CHDIR) $(DIR) && $(D) compose down --volumes --rmi all
-	@$(D) system prune -a -f
 
 re: fclean all
 
