@@ -68,7 +68,7 @@ if [ ! -f "wp-config.php" ]; then
 
 	# Create user
 	wp user create ${WP_USER} ${WP_USER_EMAIL} \
-		--user_pass=${WP_USER_PASSWORD} --role=author
+		--user_pass=${WP_USER_PASSWORD} --role=editor
 	error_status "failed to create user on wp database"
 else
 	echo "[WARNING]: Detected 'wp-config.php': \
