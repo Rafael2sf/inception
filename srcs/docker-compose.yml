@@ -5,7 +5,7 @@ services:
 
   nginx:
     container_name: "ngx"
-    build : "/home/rafernan/containers/srcs/requirements/nginx/"
+    build : "$PWD/requirements/nginx/"
     image : "my_nginx:1.0"
     ports :
       - "443:443"
@@ -18,7 +18,7 @@ services:
     depends_on:
      - "nginx"
     container_name: "mdb"
-    build : "/home/rafernan/containers/srcs/requirements/mariadb/"
+    build : "$PWD/requirements/mariadb/"
     image : "my_mariadb:1.0"
     expose:
      - "3306"
@@ -33,7 +33,7 @@ services:
     depends_on:
       - "mariadb"
     container_name: "wphp"
-    build : "/home/rafernan/containers/srcs/requirements/wordpress/"
+    build : "$PWD/requirements/wordpress/"
     image : "my_wordpress:1.0"
     expose:
       - "9000"
@@ -43,7 +43,7 @@ services:
       - "inception-network"
     volumes:
       - "wp-files:/var/www/rafernan.42.fr/"
-      - "wp-db:/var/lib/mysql/"
+
 networks:
   inception-network:
     name: "inception"

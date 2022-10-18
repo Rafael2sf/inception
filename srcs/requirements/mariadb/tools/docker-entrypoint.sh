@@ -28,7 +28,6 @@ function run_safe()
 	fi
 }
 
-
 rc-status -a > /dev/null
 
 if [ ! -d "/var/lib/mysql/mysql" ]; then
